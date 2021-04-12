@@ -26,7 +26,7 @@ import 'package:flutter/material.dart';
 
 class StackedAreaCustomColorLineChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   StackedAreaCustomColorLineChart(this.seriesList, {this.animate});
 
@@ -103,7 +103,7 @@ class StackedAreaCustomColorLineChart extends StatelessWidget {
     return new charts.LineChart(seriesList,
         defaultRenderer:
             new charts.LineRendererConfig(includeArea: true, stacked: true),
-        animate: animate);
+        animate: animate!);
   }
 
   /// Create one series with sample hard coded data.

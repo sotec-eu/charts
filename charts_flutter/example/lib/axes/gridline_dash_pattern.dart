@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class GridlineDashPattern extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   GridlineDashPattern(this.seriesList, {this.animate});
 
@@ -74,8 +74,8 @@ class GridlineDashPattern extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new charts.TimeSeriesChart(seriesList,
-        animate: animate,
+    return new charts.TimeSeriesChart(seriesList as List<Series<dynamic, DateTime>>,
+        animate: animate!,
 
         /// Customize the gridlines to use a dash pattern.
         primaryMeasureAxis: new charts.NumericAxisSpec(

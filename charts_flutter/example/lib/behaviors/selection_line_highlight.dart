@@ -20,7 +20,7 @@ import 'package:flutter/material.dart';
 
 class SelectionLineHighlight extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   SelectionLineHighlight(this.seriesList, {this.animate});
 
@@ -75,7 +75,7 @@ class SelectionLineHighlight extends StatelessWidget {
     //
     // As an alternative, [defaultInteractions] can be set to true to include
     // the default chart interactions, including a LinePointHighlighter.
-    return new charts.LineChart(seriesList, animate: animate, behaviors: [
+    return new charts.LineChart(seriesList, animate: animate!, behaviors: [
       // Optional - Configures a [LinePointHighlighter] behavior with a
       // vertical follow line. A vertical follow line is included by
       // default, but is shown here as an example configuration.

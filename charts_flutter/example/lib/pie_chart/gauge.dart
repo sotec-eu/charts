@@ -23,7 +23,7 @@ import 'package:flutter/material.dart';
 
 class GaugeChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   GaugeChart(this.seriesList, {this.animate});
 
@@ -69,7 +69,7 @@ class GaugeChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.PieChart(seriesList,
-        animate: animate,
+        animate: animate!,
         // Configure the width of the pie slices to 30px. The remaining space in
         // the chart will be left as a hole in the center. Adjust the start
         // angle and the arc length of the pie so it resembles a gauge.

@@ -29,11 +29,11 @@ class IconRenderer extends charts.CustomSymbolRenderer {
   IconRenderer(this.iconData);
 
   @override
-  Widget build(BuildContext context, {Size size, Color color, bool enabled}) {
+  Widget build(BuildContext context, {Size? size, Color? color, required bool enabled}) {
     // Lighten the color if the symbol is not enabled
     // Example: If user has tapped on a Series deselecting it.
     if (!enabled) {
-      color = color.withOpacity(0.26);
+      color = color!.withOpacity(0.26);
     }
 
     return new SizedBox.fromSize(
@@ -43,7 +43,7 @@ class IconRenderer extends charts.CustomSymbolRenderer {
 
 class LegendWithCustomSymbol extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   LegendWithCustomSymbol(this.seriesList, {this.animate});
 
@@ -127,8 +127,8 @@ class LegendWithCustomSymbol extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
       barGroupingType: charts.BarGroupingType.grouped,
       // Add the legend behavior to the chart to turn on legends.
       // By default the legend will display above the chart.

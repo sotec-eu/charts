@@ -32,7 +32,7 @@ import 'package:flutter/material.dart';
 
 class InitialSelection extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   InitialSelection(this.seriesList, {this.animate});
 
@@ -79,8 +79,8 @@ class InitialSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
       behaviors: [
         // Initial selection can be configured by passing in:
         //

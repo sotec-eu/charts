@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class RTLSeriesLegend extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   RTLSeriesLegend(this.seriesList, {this.animate});
 
@@ -129,8 +129,8 @@ class RTLSeriesLegend extends StatelessWidget {
     return new Directionality(
         textDirection: TextDirection.rtl,
         child: new charts.BarChart(
-          seriesList,
-          animate: animate,
+          seriesList as List<Series<dynamic, String>>,
+          animate: animate!,
           behaviors: [
             new charts.SeriesLegend(
                 position: charts.BehaviorPosition.end, desiredMaxRows: 2)

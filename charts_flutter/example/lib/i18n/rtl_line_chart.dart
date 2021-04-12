@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class RTLLineChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   RTLLineChart(this.seriesList, {this.animate});
 
@@ -82,7 +82,7 @@ class RTLLineChart extends StatelessWidget {
         textDirection: TextDirection.rtl,
         child: new charts.LineChart(
           seriesList,
-          animate: animate,
+          animate: animate!,
         ));
   }
 

@@ -39,7 +39,7 @@ import 'package:flutter/material.dart';
 
 class DomainA11yExploreBarChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   DomainA11yExploreBarChart(this.seriesList, {this.animate});
 
@@ -132,8 +132,8 @@ class DomainA11yExploreBarChart extends StatelessWidget {
         // explore mode.
         hint: 'Press and hold to enable explore',
         child: new charts.BarChart(
-          seriesList,
-          animate: animate,
+          seriesList as List<Series<dynamic, String>>,
+          animate: animate!,
           // To prevent conflict with the select nearest behavior that uses the
           // tap gesture, turn off default interactions when the user is using
           // an accessibility service like TalkBack or VoiceOver to interact

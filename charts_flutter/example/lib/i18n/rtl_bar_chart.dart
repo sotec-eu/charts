@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class RTLBarChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   RTLBarChart(this.seriesList, {this.animate});
 
@@ -84,8 +84,8 @@ class RTLBarChart extends StatelessWidget {
     return new Directionality(
         textDirection: TextDirection.rtl,
         child: new charts.BarChart(
-          seriesList,
-          animate: animate,
+          seriesList as List<Series<dynamic, String>>,
+          animate: animate!,
           vertical: false,
         ));
   }

@@ -22,7 +22,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 
 class StackedHorizontalBarChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   StackedHorizontalBarChart(this.seriesList, {this.animate});
 
@@ -95,8 +95,8 @@ class StackedHorizontalBarChart extends StatelessWidget {
   Widget build(BuildContext context) {
     // For horizontal bar charts, set the [vertical] flag to false.
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
       barGroupingType: charts.BarGroupingType.stacked,
       vertical: false,
     );

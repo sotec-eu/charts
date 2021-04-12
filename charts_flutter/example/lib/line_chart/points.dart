@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class PointsLineChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   PointsLineChart(this.seriesList, {this.animate});
 
@@ -69,7 +69,7 @@ class PointsLineChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.LineChart(seriesList,
-        animate: animate,
+        animate: animate!,
         defaultRenderer: new charts.LineRendererConfig(includePoints: true));
   }
 

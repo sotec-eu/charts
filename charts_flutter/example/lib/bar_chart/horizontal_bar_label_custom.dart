@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class HorizontalBarLabelCustomChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   HorizontalBarLabelCustomChart(this.seriesList, {this.animate});
 
@@ -86,8 +86,8 @@ class HorizontalBarLabelCustomChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
       vertical: false,
       barRendererDecorator: new charts.BarLabelDecorator<String>(),
       // Hide domain axis.

@@ -23,7 +23,7 @@ import 'package:flutter/material.dart';
 /// Example of a line chart rendered with dash patterns.
 class DashPatternLineChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   DashPatternLineChart(this.seriesList, {this.animate});
 
@@ -99,7 +99,7 @@ class DashPatternLineChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new charts.LineChart(seriesList, animate: animate);
+    return new charts.LineChart(seriesList, animate: animate!);
   }
 
   /// Create three series with sample hard coded data.

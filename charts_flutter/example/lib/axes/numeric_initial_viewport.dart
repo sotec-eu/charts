@@ -30,7 +30,7 @@ import 'package:flutter/material.dart';
 
 class NumericInitialViewport extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   NumericInitialViewport(this.seriesList, {this.animate});
 
@@ -85,7 +85,7 @@ class NumericInitialViewport extends StatelessWidget {
   Widget build(BuildContext context) {
     return new charts.LineChart(
       seriesList,
-      animate: animate,
+      animate: animate!,
       domainAxis: new charts.NumericAxisSpec(
           // Set the initial viewport by providing a new AxisSpec with the
           // desired viewport, in NumericExtents.

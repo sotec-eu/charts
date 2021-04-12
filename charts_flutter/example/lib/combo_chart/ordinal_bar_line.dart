@@ -23,7 +23,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 
 class OrdinalComboBarLineChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   OrdinalComboBarLineChart(this.seriesList, {this.animate});
 
@@ -96,7 +96,7 @@ class OrdinalComboBarLineChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.OrdinalComboChart(seriesList,
-        animate: animate,
+        animate: animate!,
         // Configure the default renderer as a bar renderer.
         defaultRenderer: new charts.BarRendererConfig(
             groupingType: charts.BarGroupingType.grouped),

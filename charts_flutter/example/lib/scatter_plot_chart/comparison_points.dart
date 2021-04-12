@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class ComparisonPointsScatterPlotChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   ComparisonPointsScatterPlotChart(this.seriesList, {this.animate});
 
@@ -103,7 +103,7 @@ class ComparisonPointsScatterPlotChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.ScatterPlotChart(seriesList,
-        animate: animate,
+        animate: animate!,
         defaultRenderer:
             new charts.PointRendererConfig(pointRendererDecorators: [
           new charts.ComparisonPointsDecorator(

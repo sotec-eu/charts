@@ -37,7 +37,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 class HorizontalBarChartWithSecondaryAxis extends StatelessWidget {
   static const secondaryMeasureAxisId = 'secondaryMeasureAxisId';
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   HorizontalBarChartWithSecondaryAxis(this.seriesList, {this.animate});
 
@@ -99,8 +99,8 @@ class HorizontalBarChartWithSecondaryAxis extends StatelessWidget {
   Widget build(BuildContext context) {
     // For horizontal bar charts, set the [vertical] flag to false.
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
       barGroupingType: charts.BarGroupingType.grouped,
       vertical: false,
       // It is important when using both primary and secondary axes to choose

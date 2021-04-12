@@ -39,7 +39,7 @@ import 'package:flutter/material.dart';
 
 class SelectionScatterPlotHighlight extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   SelectionScatterPlotHighlight(this.seriesList, {this.animate});
 
@@ -116,8 +116,8 @@ class SelectionScatterPlotHighlight extends StatelessWidget {
         domainFn: (LinearSales sales, _) => sales.year,
         measureFn: (LinearSales sales, _) => sales.sales,
         radiusPxFn: (LinearSales sales, _) => sales.radius,
-        fillColorFn: (LinearSales row, _) => row.fillColor,
-        strokeWidthPxFn: (LinearSales row, _) => row.strokeWidth,
+        fillColorFn: (LinearSales row, _) => row.fillColor!,
+        strokeWidthPxFn: (LinearSales row, _) => row.strokeWidth!,
         data: data,
       )
         // Accessor function that associates each datum with a symbol renderer.
@@ -132,7 +132,7 @@ class SelectionScatterPlotHighlight extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.ScatterPlotChart(seriesList,
-        animate: animate,
+        animate: animate!,
         behaviors: [
           // Optional - Configures a [LinePointHighlighter] behavior with
           // horizontal and vertical follow lines. The highlighter will increase
@@ -208,8 +208,8 @@ class SelectionScatterPlotHighlight extends StatelessWidget {
         domainFn: (LinearSales sales, _) => sales.year,
         measureFn: (LinearSales sales, _) => sales.sales,
         radiusPxFn: (LinearSales sales, _) => sales.radius,
-        fillColorFn: (LinearSales row, _) => row.fillColor,
-        strokeWidthPxFn: (LinearSales row, _) => row.strokeWidth,
+        fillColorFn: (LinearSales row, _) => row.fillColor!,
+        strokeWidthPxFn: (LinearSales row, _) => row.strokeWidth!,
         data: data,
       )
         // Accessor function that associates each datum with a symbol renderer.
@@ -226,9 +226,9 @@ class LinearSales {
   final int year;
   final int sales;
   final double radius;
-  final String shape;
-  final charts.Color fillColor;
-  final double strokeWidth;
+  final String? shape;
+  final charts.Color? fillColor;
+  final double? strokeWidth;
 
   LinearSales(this.year, this.sales, this.radius, this.shape, this.fillColor,
       this.strokeWidth);

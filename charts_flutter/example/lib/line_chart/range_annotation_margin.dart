@@ -23,7 +23,7 @@ import 'package:flutter/material.dart';
 
 class LineRangeAnnotationMarginChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   LineRangeAnnotationMarginChart(this.seriesList, {this.animate});
 
@@ -75,7 +75,7 @@ class LineRangeAnnotationMarginChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.LineChart(seriesList,
-        animate: animate,
+        animate: animate!,
 
         // Allow enough space in the left and right chart margins for the
         // annotations.

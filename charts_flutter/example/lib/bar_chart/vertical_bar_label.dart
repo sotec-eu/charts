@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class VerticalBarLabelChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   VerticalBarLabelChart(this.seriesList, {this.animate});
 
@@ -77,8 +77,8 @@ class VerticalBarLabelChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
       // Set a bar label decorator.
       // Example configuring different styles for inside/outside:
       //       barRendererDecorator: new charts.BarLabelDecorator(

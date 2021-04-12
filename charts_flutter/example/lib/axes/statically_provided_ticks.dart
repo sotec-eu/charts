@@ -35,7 +35,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 /// passing in a list of ticks defined with [TickSpec] of datetime.
 class StaticallyProvidedTicks extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   StaticallyProvidedTicks(this.seriesList, {this.animate});
 
@@ -97,8 +97,8 @@ class StaticallyProvidedTicks extends StatelessWidget {
     ];
 
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
       domainAxis: new charts.OrdinalAxisSpec(
           tickProviderSpec:
               new charts.StaticOrdinalTickProviderSpec(staticTicks)),

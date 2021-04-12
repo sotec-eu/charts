@@ -26,7 +26,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 
 class DatumLegendOptions extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   DatumLegendOptions(this.seriesList, {this.animate});
 
@@ -72,7 +72,7 @@ class DatumLegendOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     return new charts.PieChart(
       seriesList,
-      animate: animate,
+      animate: animate!,
       // Add the legend behavior to the chart to turn on legends.
       // This example shows how to change the position and justification of
       // the legend, in addition to altering the max rows and padding.

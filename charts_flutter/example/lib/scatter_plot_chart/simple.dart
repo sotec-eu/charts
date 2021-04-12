@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class SimpleScatterPlotChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   SimpleScatterPlotChart(this.seriesList, {this.animate});
 
@@ -92,7 +92,7 @@ class SimpleScatterPlotChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new charts.ScatterPlotChart(seriesList, animate: animate);
+    return new charts.ScatterPlotChart(seriesList, animate: animate!);
   }
 
   /// Create one series with sample hard coded data.

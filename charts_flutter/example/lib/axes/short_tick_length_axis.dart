@@ -28,7 +28,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 /// to customize the font, tick lengths, and offsets.
 class ShortTickLengthAxis extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   ShortTickLengthAxis(this.seriesList, {this.animate});
 
@@ -73,8 +73,8 @@ class ShortTickLengthAxis extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
 
       /// Customize the primary measure axis using a small tick renderer.
       /// Note: use String instead of num for ordinal domain axis

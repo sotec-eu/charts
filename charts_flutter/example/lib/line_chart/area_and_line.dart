@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class AreaAndLineChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   AreaAndLineChart(this.seriesList, {this.animate});
 
@@ -85,7 +85,7 @@ class AreaAndLineChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.LineChart(seriesList,
-        animate: animate,
+        animate: animate!,
         customSeriesRenderers: [
           new charts.LineRendererConfig(
               // ID used to link series to this renderer.

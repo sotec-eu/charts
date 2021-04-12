@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class StackedAreaLineChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   StackedAreaLineChart(this.seriesList, {this.animate});
 
@@ -99,7 +99,7 @@ class StackedAreaLineChart extends StatelessWidget {
     return new charts.LineChart(seriesList,
         defaultRenderer:
             new charts.LineRendererConfig(includeArea: true, stacked: true),
-        animate: animate);
+        animate: animate!);
   }
 
   /// Create one series with sample hard coded data.

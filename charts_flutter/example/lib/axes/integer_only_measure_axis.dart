@@ -27,7 +27,7 @@ import 'package:flutter/material.dart';
 
 class IntegerOnlyMeasureAxis extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   IntegerOnlyMeasureAxis(this.seriesList, {this.animate});
 
@@ -80,8 +80,8 @@ class IntegerOnlyMeasureAxis extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.TimeSeriesChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, DateTime>>,
+      animate: animate!,
       // Provides a custom axis ensuring that the ticks are in whole numbers.
       primaryMeasureAxis: new charts.NumericAxisSpec(
           tickProviderSpec: new charts.BasicNumericTickProviderSpec(

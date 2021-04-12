@@ -28,7 +28,7 @@ import 'package:flutter/material.dart';
 
 class NumericComboLinePointChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   NumericComboLinePointChart(this.seriesList, {this.animate});
 
@@ -104,7 +104,7 @@ class NumericComboLinePointChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.NumericComboChart(seriesList,
-        animate: animate,
+        animate: animate!,
         // Configure the default renderer as a line renderer. This will be used
         // for any series that does not define a rendererIdKey.
         defaultRenderer: new charts.LineRendererConfig(),

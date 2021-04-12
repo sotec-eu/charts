@@ -23,7 +23,7 @@ import 'package:flutter/material.dart';
 
 class ScatterPlotComboLineChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   ScatterPlotComboLineChart(this.seriesList, {this.animate});
 
@@ -110,7 +110,7 @@ class ScatterPlotComboLineChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.ScatterPlotChart(seriesList,
-        animate: animate,
+        animate: animate!,
         // Configure the default renderer as a point renderer. This will be used
         // for any series that does not define a rendererIdKey.
         //

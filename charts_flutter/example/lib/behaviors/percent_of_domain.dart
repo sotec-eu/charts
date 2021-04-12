@@ -25,7 +25,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 
 class PercentOfDomainBarChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   PercentOfDomainBarChart(this.seriesList, {this.animate});
 
@@ -97,8 +97,8 @@ class PercentOfDomainBarChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
       barGroupingType: charts.BarGroupingType.stacked,
       // Configures a [PercentInjector] behavior that will calculate measure
       // values as the percentage of the total of all data that shares a

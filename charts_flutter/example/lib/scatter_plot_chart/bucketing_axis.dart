@@ -27,7 +27,7 @@ import 'package:flutter/material.dart';
 
 class BucketingAxisScatterPlotChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   BucketingAxisScatterPlotChart(this.seriesList, {this.animate});
 
@@ -167,7 +167,7 @@ class BucketingAxisScatterPlotChart extends StatelessWidget {
         behaviors: [
           new charts.SeriesLegend(position: charts.BehaviorPosition.end),
         ],
-        animate: animate);
+        animate: animate!);
   }
 
   /// Create one series with sample hard coded data.

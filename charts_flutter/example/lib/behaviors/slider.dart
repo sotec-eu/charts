@@ -34,7 +34,7 @@ import 'package:flutter/scheduler.dart';
 /// slider. This is useful for synchronizing the slider with external elements.
 class SliderLine extends StatefulWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   SliderLine(this.seriesList, {this.animate});
 
@@ -103,9 +103,9 @@ class SliderLine extends StatefulWidget {
 }
 
 class _SliderCallbackState extends State<SliderLine> {
-  num _sliderDomainValue;
-  String _sliderDragState;
-  Point<int> _sliderPosition;
+  num? _sliderDomainValue;
+  String? _sliderDragState;
+  Point<int>? _sliderPosition;
 
   // Handles callbacks when the user drags the slider.
   _onSliderChange(Point<int> point, dynamic domain, String roleId,
@@ -119,7 +119,7 @@ class _SliderCallbackState extends State<SliderLine> {
       });
     }
 
-    SchedulerBinding.instance.addPostFrameCallback(rebuild);
+    SchedulerBinding.instance!.addPostFrameCallback(rebuild);
   }
 
   @override
@@ -130,7 +130,7 @@ class _SliderCallbackState extends State<SliderLine> {
           height: 150.0,
           child: new charts.LineChart(
             widget.seriesList,
-            animate: widget.animate,
+            animate: widget.animate!,
             // Configures a [Slider] behavior.
             //
             // Available options include:
@@ -175,7 +175,7 @@ class _SliderCallbackState extends State<SliderLine> {
       children.add(new Padding(
           padding: new EdgeInsets.only(top: 5.0),
           child: new Text(
-              'Slider position: ${_sliderPosition.x}, ${_sliderPosition.y}')));
+              'Slider position: ${_sliderPosition!.x}, ${_sliderPosition!.y}')));
     }
     if (_sliderDragState != null) {
       children.add(new Padding(

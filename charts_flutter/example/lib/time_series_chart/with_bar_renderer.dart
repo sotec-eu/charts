@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class TimeSeriesBar extends StatelessWidget {
   final List<charts.Series<TimeSeriesSales, DateTime>> seriesList;
-  final bool animate;
+  final bool? animate;
 
   TimeSeriesBar(this.seriesList, {this.animate});
 
@@ -87,7 +87,7 @@ class TimeSeriesBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return new charts.TimeSeriesChart(
       seriesList,
-      animate: animate,
+      animate: animate!,
       // Set the default renderer to a bar renderer.
       // This can also be one of the custom renderers of the time series chart.
       defaultRenderer: new charts.BarRendererConfig<DateTime>(),

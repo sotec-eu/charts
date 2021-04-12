@@ -26,7 +26,7 @@ import 'package:flutter/material.dart';
 
 class CustomMeasureTickCount extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   CustomMeasureTickCount(this.seriesList, {this.animate});
 
@@ -78,8 +78,8 @@ class CustomMeasureTickCount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new charts.TimeSeriesChart(seriesList,
-        animate: animate,
+    return new charts.TimeSeriesChart(seriesList as List<Series<dynamic, DateTime>>,
+        animate: animate!,
 
         /// Customize the measure axis to have 2 ticks,
         primaryMeasureAxis: new charts.NumericAxisSpec(

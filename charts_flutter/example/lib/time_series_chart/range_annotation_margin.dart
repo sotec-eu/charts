@@ -23,7 +23,7 @@ import 'package:flutter/material.dart';
 
 class TimeSeriesRangeAnnotationMarginChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   TimeSeriesRangeAnnotationMarginChart(this.seriesList, {this.animate});
 
@@ -70,8 +70,8 @@ class TimeSeriesRangeAnnotationMarginChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new charts.TimeSeriesChart(seriesList,
-        animate: animate,
+    return new charts.TimeSeriesChart(seriesList as List<Series<dynamic, DateTime>>,
+        animate: animate!,
 
         // Allow enough space in the left and right chart margins for the
         // annotations.

@@ -23,7 +23,7 @@ import 'package:flutter/material.dart';
 
 class DonutAutoLabelChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   DonutAutoLabelChart(this.seriesList, {this.animate});
 
@@ -71,7 +71,7 @@ class DonutAutoLabelChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.PieChart(seriesList,
-        animate: animate,
+        animate: animate!,
         // Configure the width of the pie slices to 60px. The remaining space in
         // the chart will be left as a hole in the center.
         //

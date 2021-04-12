@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class HorizontalBarLabelChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   HorizontalBarLabelChart(this.seriesList, {this.animate});
 
@@ -77,8 +77,8 @@ class HorizontalBarLabelChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
       vertical: false,
       // Set a bar label decorator.
       // Example configuring different styles for inside/outside:

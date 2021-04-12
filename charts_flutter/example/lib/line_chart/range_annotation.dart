@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class LineRangeAnnotationChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   LineRangeAnnotationChart(this.seriesList, {this.animate});
 
@@ -73,7 +73,7 @@ class LineRangeAnnotationChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new charts.LineChart(seriesList, animate: animate, behaviors: [
+    return new charts.LineChart(seriesList, animate: animate!, behaviors: [
       new charts.RangeAnnotation([
         new charts.RangeAnnotationSegment(
             0.5, 1.0, charts.RangeAnnotationAxisType.domain,

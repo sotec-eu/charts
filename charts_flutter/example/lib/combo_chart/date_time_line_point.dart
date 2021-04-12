@@ -28,7 +28,7 @@ import 'package:flutter/material.dart';
 
 class DateTimeComboLinePointChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   DateTimeComboLinePointChart(this.seriesList, {this.animate});
 
@@ -104,8 +104,8 @@ class DateTimeComboLinePointChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.TimeSeriesChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, DateTime>>,
+      animate: animate!,
       // Configure the default renderer as a line renderer. This will be used
       // for any series that does not define a rendererIdKey.
       //

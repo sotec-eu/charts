@@ -24,7 +24,7 @@ import 'package:flutter/material.dart';
 /// margin.
 class ChartTitleLine extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   ChartTitleLine(this.seriesList, {this.animate});
 
@@ -71,7 +71,7 @@ class ChartTitleLine extends StatelessWidget {
   Widget build(BuildContext context) {
     return new charts.LineChart(
       seriesList,
-      animate: animate,
+      animate: animate!,
       // Configures four [ChartTitle] behaviors to render titles in each chart
       // margin. The top title has a sub-title, and is aligned to the left edge
       // of the chart. The other titles are aligned with the middle of the draw

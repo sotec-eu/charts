@@ -23,7 +23,7 @@ import 'package:flutter/material.dart';
 
 class SlidingViewportOnSelection extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   SlidingViewportOnSelection(this.seriesList, {this.animate});
 
@@ -83,8 +83,8 @@ class SlidingViewportOnSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
       behaviors: [
         // Add the sliding viewport behavior to have the viewport center on the
         // domain that is currently selected.

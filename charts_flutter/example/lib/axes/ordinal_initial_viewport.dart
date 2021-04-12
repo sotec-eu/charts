@@ -30,7 +30,7 @@ import 'package:flutter/material.dart';
 
 class OrdinalInitialViewport extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   OrdinalInitialViewport(this.seriesList, {this.animate});
 
@@ -90,8 +90,8 @@ class OrdinalInitialViewport extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
       // Set the initial viewport by providing a new AxisSpec with the
       // desired viewport: a starting domain and the data size.
       domainAxis: new charts.OrdinalAxisSpec(

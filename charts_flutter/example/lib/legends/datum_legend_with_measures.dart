@@ -29,7 +29,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 /// Also shows the option to provide a custom measure formatter.
 class DatumLegendWithMeasures extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   DatumLegendWithMeasures(this.seriesList, {this.animate});
 
@@ -75,7 +75,7 @@ class DatumLegendWithMeasures extends StatelessWidget {
   Widget build(BuildContext context) {
     return new charts.PieChart(
       seriesList,
-      animate: animate,
+      animate: animate!,
       // Add the legend behavior to the chart to turn on legends.
       // This example shows how to optionally show measure and provide a custom
       // formatter.

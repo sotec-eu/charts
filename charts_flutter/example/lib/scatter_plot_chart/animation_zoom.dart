@@ -23,7 +23,7 @@ import 'package:flutter/material.dart';
 
 class ScatterPlotAnimationZoomChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   ScatterPlotAnimationZoomChart(this.seriesList, {this.animate});
 
@@ -85,7 +85,7 @@ class ScatterPlotAnimationZoomChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.ScatterPlotChart(seriesList,
-        animate: animate,
+        animate: animate!,
         behaviors: [
           new charts.PanAndZoomBehavior(),
         ]);

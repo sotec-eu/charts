@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class CustomRoundedBars extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   CustomRoundedBars(this.seriesList, {this.animate});
 
@@ -69,8 +69,8 @@ class CustomRoundedBars extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
       defaultRenderer: new charts.BarRendererConfig(
           // By default, bar renderer will draw rounded bars with a constant
           // radius of 30.

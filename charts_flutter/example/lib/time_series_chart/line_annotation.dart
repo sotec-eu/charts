@@ -29,7 +29,7 @@ import 'package:flutter/material.dart';
 
 class TimeSeriesLineAnnotationChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   TimeSeriesLineAnnotationChart(this.seriesList, {this.animate});
 
@@ -74,7 +74,7 @@ class TimeSeriesLineAnnotationChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new charts.TimeSeriesChart(seriesList, animate: animate, behaviors: [
+    return new charts.TimeSeriesChart(seriesList as List<Series<dynamic, DateTime>>, animate: animate!, behaviors: [
       new charts.RangeAnnotation([
         new charts.LineAnnotationSegment(
             new DateTime(2017, 10, 4), charts.RangeAnnotationAxisType.domain,

@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class SimpleBarChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   SimpleBarChart(this.seriesList, {this.animate});
 
@@ -69,8 +69,8 @@ class SimpleBarChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
     );
   }
 

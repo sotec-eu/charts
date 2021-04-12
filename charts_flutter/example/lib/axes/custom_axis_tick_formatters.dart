@@ -23,7 +23,7 @@ import 'package:intl/intl.dart';
 
 class CustomAxisTickFormatters extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   CustomAxisTickFormatters(this.seriesList, {this.animate});
 
@@ -91,8 +91,8 @@ class CustomAxisTickFormatters extends StatelessWidget {
     // final customTickFormatter =
     //   charts.BasicNumericTickFormatterSpec((num value) => 'MyValue: $value');
 
-    return new charts.TimeSeriesChart(seriesList,
-        animate: animate,
+    return new charts.TimeSeriesChart(seriesList as List<Series<dynamic, DateTime>>,
+        animate: animate!,
         // Sets up a currency formatter for the measure axis.
         primaryMeasureAxis: new charts.NumericAxisSpec(
             tickFormatterSpec: simpleCurrencyFormatter),

@@ -30,7 +30,7 @@ import 'package:flutter/material.dart';
 
 class SelectionUserManaged extends StatefulWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   SelectionUserManaged(this.seriesList, {this.animate});
 
@@ -106,7 +106,7 @@ class SelectionUserManagedState extends State<SelectionUserManaged> {
   @override
   Widget build(BuildContext context) {
     final chart = new charts.BarChart(
-      widget.seriesList,
+      widget.seriesList as List<Series<dynamic, String>>,
       animate: false, //widget.animate,
       selectionModels: [
         new charts.SelectionModelConfig(

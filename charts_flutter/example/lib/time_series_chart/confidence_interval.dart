@@ -25,7 +25,7 @@ import 'package:flutter/material.dart';
 
 class TimeSeriesConfidenceInterval extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   TimeSeriesConfidenceInterval(this.seriesList, {this.animate});
 
@@ -76,8 +76,8 @@ class TimeSeriesConfidenceInterval extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.TimeSeriesChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, DateTime>>,
+      animate: animate!,
       // Optionally pass in a [DateTimeFactory] used by the chart. The factory
       // should create the same type of [DateTime] as the data provided. If none
       // specified, the default creates local date time.

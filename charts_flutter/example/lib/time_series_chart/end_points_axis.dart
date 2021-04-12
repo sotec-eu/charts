@@ -24,7 +24,7 @@ import 'package:flutter/material.dart';
 
 class EndPointsAxisTimeSeriesChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   EndPointsAxisTimeSeriesChart(this.seriesList, {this.animate});
 
@@ -71,8 +71,8 @@ class EndPointsAxisTimeSeriesChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.TimeSeriesChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, DateTime>>,
+      animate: animate!,
       // Configures an axis spec that is configured to render one tick at each
       // end of the axis range, anchored "inside" the axis. The start tick label
       // will be left-aligned with its tick mark, and the end tick label will be

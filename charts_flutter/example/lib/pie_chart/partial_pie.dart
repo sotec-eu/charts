@@ -23,7 +23,7 @@ import 'package:flutter/material.dart';
 
 class PartialPieChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   PartialPieChart(this.seriesList, {this.animate});
 
@@ -71,7 +71,7 @@ class PartialPieChart extends StatelessWidget {
     // Configure the pie to display the data across only 3/4 instead of the full
     // revolution.
     return new charts.PieChart(seriesList,
-        animate: animate,
+        animate: animate!,
         defaultRenderer: new charts.ArcRendererConfig(arcLength: 3 / 2 * pi));
   }
 

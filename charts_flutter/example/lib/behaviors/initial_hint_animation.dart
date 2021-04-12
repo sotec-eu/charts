@@ -49,7 +49,7 @@ import 'package:flutter/material.dart';
 
 class InitialHintAnimation extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   InitialHintAnimation(this.seriesList, {this.animate});
 
@@ -109,8 +109,8 @@ class InitialHintAnimation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
       // Optionally turn off the animation that animates values up from the
       // bottom of the domain axis. If animation is on, the bars will animate up
       // and then animate to the final viewport.

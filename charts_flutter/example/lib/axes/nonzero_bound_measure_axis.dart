@@ -23,7 +23,7 @@ import 'package:flutter/material.dart';
 
 class NonzeroBoundMeasureAxis extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   NonzeroBoundMeasureAxis(this.seriesList, {this.animate});
 
@@ -75,8 +75,8 @@ class NonzeroBoundMeasureAxis extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new charts.TimeSeriesChart(seriesList,
-        animate: animate,
+    return new charts.TimeSeriesChart(seriesList as List<Series<dynamic, DateTime>>,
+        animate: animate!,
         // Provide a tickProviderSpec which does NOT require that zero is
         // included.
         primaryMeasureAxis: new charts.NumericAxisSpec(

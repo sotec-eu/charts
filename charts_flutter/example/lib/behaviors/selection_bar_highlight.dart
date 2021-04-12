@@ -20,7 +20,7 @@ import 'package:flutter/material.dart';
 
 class SelectionBarHighlight extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   SelectionBarHighlight(this.seriesList, {this.animate});
 
@@ -75,8 +75,8 @@ class SelectionBarHighlight extends StatelessWidget {
     // [defaultInteractions] can be set to false to avoid the default
     // interactions.
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
       defaultInteractions: true,
     );
   }

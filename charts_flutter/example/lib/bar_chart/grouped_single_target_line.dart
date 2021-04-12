@@ -22,7 +22,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 
 class GroupedBarSingleTargetLineChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   GroupedBarSingleTargetLineChart(this.seriesList, {this.animate});
 
@@ -103,8 +103,8 @@ class GroupedBarSingleTargetLineChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new charts.BarChart(seriesList,
-        animate: animate,
+    return new charts.BarChart(seriesList as List<Series<dynamic, String>>,
+        animate: animate!,
         barGroupingType: charts.BarGroupingType.grouped,
         customSeriesRenderers: [
           new charts.BarTargetLineRendererConfig(

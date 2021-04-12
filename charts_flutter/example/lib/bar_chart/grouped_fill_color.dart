@@ -24,7 +24,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 /// different fill colors.
 class GroupedFillColorBarChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   GroupedFillColorBarChart(this.seriesList, {this.animate});
 
@@ -105,8 +105,8 @@ class GroupedFillColorBarChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
       // Configure a stroke width to enable borders on the bars.
       defaultRenderer: new charts.BarRendererConfig(
           groupingType: charts.BarGroupingType.grouped, strokeWidthPx: 2.0),

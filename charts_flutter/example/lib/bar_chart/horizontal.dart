@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class HorizontalBarChart extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
+  final bool? animate;
 
   HorizontalBarChart(this.seriesList, {this.animate});
 
@@ -69,8 +69,8 @@ class HorizontalBarChart extends StatelessWidget {
   Widget build(BuildContext context) {
     // For horizontal bar charts, set the [vertical] flag to false.
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList as List<Series<dynamic, String>>,
+      animate: animate!,
       vertical: false,
     );
   }
