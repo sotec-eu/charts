@@ -36,7 +36,7 @@ class PanBehavior extends ChartBehavior<common.PanBehavior> {
   ///
   /// When flinging this callback is called after the fling is completed.
   /// This is because panning is only completed when the flinging stops.
-  final common.PanningCompletedCallback panningCompletedCallback;
+  final common.PanningCompletedCallback? panningCompletedCallback;
 
   PanBehavior({this.panningCompletedCallback});
 
@@ -45,7 +45,7 @@ class PanBehavior extends ChartBehavior<common.PanBehavior> {
   @override
   common.PanBehavior<D> createCommonBehavior<D>() {
     return new FlutterPanBehavior<D>()
-      ..panningCompletedCallback = panningCompletedCallback;
+      ..panningCompletedCallback = panningCompletedCallback!;
   }
 
   @override
@@ -72,7 +72,7 @@ class FlutterPanBehavior<D> = common.PanBehavior<D>
 /// thereof.
 mixin FlutterPanBehaviorMixin<D> on common.PanBehavior<D>
     implements ChartStateBehavior {
-  BaseChartState _chartState;
+  late BaseChartState _chartState;
 
   set chartState(BaseChartState chartState) {
     assert(chartState != null);
@@ -82,10 +82,10 @@ mixin FlutterPanBehaviorMixin<D> on common.PanBehavior<D>
     _flingAnimator?.addListener(_onFlingTick);
   }
 
-  AnimationController _flingAnimator;
+  AnimationController? _flingAnimator;
 
-  double _flingAnimationInitialTranslatePx;
-  double _flingAnimationTargetTranslatePx;
+  double? _flingAnimationInitialTranslatePx;
+  double? _flingAnimationTargetTranslatePx;
 
   bool _isFlinging = false;
 
@@ -132,7 +132,7 @@ mixin FlutterPanBehaviorMixin<D> on common.PanBehavior<D>
     final domainAxis = chart.domainAxis;
 
     _flingAnimationInitialTranslatePx = domainAxis.viewportTranslatePx;
-    _flingAnimationTargetTranslatePx = _flingAnimationInitialTranslatePx +
+    _flingAnimationTargetTranslatePx = _flingAnimationInitialTranslatePx! +
         pixelsPerSec * flingDistanceMultiplier;
 
     final flingDuration = new Duration(
@@ -156,10 +156,10 @@ mixin FlutterPanBehaviorMixin<D> on common.PanBehavior<D>
       return;
     }
 
-    final percent = _flingAnimator.value;
+    final percent = _flingAnimator!.value;
     final deceleratedPercent = _decelerate(percent);
     final translation = lerpDouble(_flingAnimationInitialTranslatePx,
-        _flingAnimationTargetTranslatePx, deceleratedPercent);
+        _flingAnimationTargetTranslatePx, deceleratedPercent)!;
 
     final domainAxis = chart.domainAxis;
 

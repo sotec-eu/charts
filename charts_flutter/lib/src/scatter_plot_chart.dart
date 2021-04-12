@@ -34,23 +34,23 @@ import 'user_managed_state.dart' show UserManagedState;
 class ScatterPlotChart extends CartesianChart<num> {
   ScatterPlotChart(
     List<common.Series> seriesList, {
-    bool animate,
-    Duration animationDuration,
-    common.AxisSpec domainAxis,
-    common.AxisSpec primaryMeasureAxis,
-    common.AxisSpec secondaryMeasureAxis,
-    LinkedHashMap<String, common.NumericAxisSpec> disjointMeasureAxes,
-    common.PointRendererConfig<num> defaultRenderer,
-    List<common.SeriesRendererConfig<num>> customSeriesRenderers,
-    List<ChartBehavior> behaviors,
-    List<SelectionModelConfig<num>> selectionModels,
-    common.RTLSpec rtlSpec,
-    LayoutConfig layoutConfig,
+    bool? animate,
+    Duration? animationDuration,
+    common.AxisSpec? domainAxis,
+    common.AxisSpec? primaryMeasureAxis,
+    common.AxisSpec? secondaryMeasureAxis,
+    LinkedHashMap<String, common.NumericAxisSpec>? disjointMeasureAxes,
+    common.PointRendererConfig<num>? defaultRenderer,
+    List<common.SeriesRendererConfig<num>>? customSeriesRenderers,
+    List<ChartBehavior>? behaviors,
+    List<SelectionModelConfig<num>>? selectionModels,
+    common.RTLSpec? rtlSpec,
+    LayoutConfig? layoutConfig,
     bool defaultInteractions = true,
-    bool flipVerticalAxis,
-    UserManagedState<num> userManagedState,
+    bool? flipVerticalAxis,
+    UserManagedState<num>? userManagedState,
   }) : super(
-          seriesList,
+          seriesList as List<Series<dynamic, num>>,
           animate: animate,
           animationDuration: animationDuration,
           domainAxis: domainAxis,
@@ -69,14 +69,14 @@ class ScatterPlotChart extends CartesianChart<num> {
         );
 
   @override
-  common.ScatterPlotChart createCommonChart(BaseChartState chartState) {
+  common.ScatterPlotChart createCommonChart(BaseChartState? chartState) {
     // Optionally create primary and secondary measure axes if the chart was
     // configured with them. If no axes were configured, then the chart will
     // use its default types (usually a numeric axis).
     return new common.ScatterPlotChart(
-        layoutConfig: layoutConfig?.commonLayoutConfig,
-        primaryMeasureAxis: primaryMeasureAxis?.createAxis(),
-        secondaryMeasureAxis: secondaryMeasureAxis?.createAxis(),
-        disjointMeasureAxes: createDisjointMeasureAxes());
+        (layoutConfig: layoutConfig?.commonLayoutConfig)!,
+        (primaryMeasureAxis: primaryMeasureAxis?.createAxis() as NumericAxis)!,
+        (secondaryMeasureAxis: secondaryMeasureAxis?.createAxis() as NumericAxis)!,
+        disjointMeasureAxes: createDisjointMeasureAxes()!);
   }
 }

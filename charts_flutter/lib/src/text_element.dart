@@ -31,26 +31,26 @@ class TextElement implements common.TextElement {
   @override
   final String text;
 
-  final double textScaleFactor;
+  final double? textScaleFactor;
 
   var _painterReady = false;
-  common.TextStyle _textStyle;
+  common.TextStyle? _textStyle;
   common.TextDirection _textDirection = common.TextDirection.ltr;
 
-  int _maxWidth;
-  common.MaxWidthStrategy _maxWidthStrategy;
+  int? _maxWidth;
+  common.MaxWidthStrategy? _maxWidthStrategy;
 
-  TextPainter _textPainter;
+  TextPainter? _textPainter;
 
-  common.TextMeasurement _measurement;
+  late common.TextMeasurement _measurement;
 
-  double _opacity;
+  double? _opacity;
 
-  TextElement(this.text, {common.TextStyle style, this.textScaleFactor})
+  TextElement(this.text, {common.TextStyle? style, this.textScaleFactor})
       : _textStyle = style;
 
   @override
-  common.TextStyle get textStyle => _textStyle;
+  common.TextStyle get textStyle => _textStyle!;
 
   @override
   set textStyle(common.TextStyle value) {
@@ -74,7 +74,7 @@ class TextElement implements common.TextElement {
   common.TextDirection get textDirection => _textDirection;
 
   @override
-  int get maxWidth => _maxWidth;
+  int get maxWidth => _maxWidth!;
 
   @override
   set maxWidth(int value) {
@@ -86,7 +86,7 @@ class TextElement implements common.TextElement {
   }
 
   @override
-  common.MaxWidthStrategy get maxWidthStrategy => _maxWidthStrategy;
+  common.MaxWidthStrategy get maxWidthStrategy => _maxWidthStrategy!;
 
   @override
   set maxWidthStrategy(common.MaxWidthStrategy maxWidthStrategy) {
@@ -123,10 +123,10 @@ class TextElement implements common.TextElement {
       _refreshPainter();
     }
 
-    return (_textPainter.height * 0.1).ceil();
+    return (_textPainter!.height * 0.1).ceil();
   }
 
-  TextPainter get textPainter {
+  TextPainter? get textPainter {
     if (!_painterReady) {
       _refreshPainter();
     }
@@ -137,7 +137,7 @@ class TextElement implements common.TextElement {
   void _refreshPainter() {
     _opacity ??= 1.0;
     var color = new Color.fromARGB(
-      (textStyle.color.a * _opacity).round(),
+      (textStyle.color.a * _opacity!).round(),
       textStyle.color.r,
       textStyle.color.g,
       textStyle.color.b,
@@ -161,13 +161,13 @@ class TextElement implements common.TextElement {
           : null;
 
     if (textScaleFactor != null) {
-      _textPainter.textScaleFactor = textScaleFactor;
+      _textPainter!.textScaleFactor = textScaleFactor!;
     }
 
-    _textPainter.layout(maxWidth: maxWidth?.toDouble() ?? double.infinity);
+    _textPainter!.layout(maxWidth: maxWidth?.toDouble() ?? double.infinity);
 
     final baseline =
-        _textPainter.computeDistanceToActualBaseline(TextBaseline.alphabetic);
+        _textPainter!.computeDistanceToActualBaseline(TextBaseline.alphabetic);
 
     // Estimating the actual draw height to 70% of measures size.
     //
@@ -175,8 +175,8 @@ class TextElement implements common.TextElement {
     // difficult to shift the text around to get it to visually line up
     // vertically with other components.
     _measurement = new common.TextMeasurement(
-        horizontalSliceWidth: _textPainter.width,
-        verticalSliceWidth: _textPainter.height * 0.70,
+        horizontalSliceWidth: _textPainter!.width,
+        verticalSliceWidth: _textPainter!.height * 0.70,
         baseline: baseline);
 
     _painterReady = true;

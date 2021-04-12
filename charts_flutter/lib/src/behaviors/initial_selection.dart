@@ -28,8 +28,8 @@ class InitialSelection extends ChartBehavior<common.InitialSelection> {
   final desiredGestures = new Set<GestureType>();
 
   final common.SelectionModelType selectionModelType;
-  final List<String> selectedSeriesConfig;
-  final List<common.SeriesDatumConfig> selectedDataConfig;
+  final List<String>? selectedSeriesConfig;
+  final List<common.SeriesDatumConfig>? selectedDataConfig;
 
   InitialSelection(
       {this.selectionModelType = common.SelectionModelType.info,
@@ -40,8 +40,8 @@ class InitialSelection extends ChartBehavior<common.InitialSelection> {
   common.InitialSelection<D> createCommonBehavior<D>() =>
       new common.InitialSelection<D>(
           selectionModelType: selectionModelType,
-          selectedDataConfig: selectedDataConfig,
-          selectedSeriesConfig: selectedSeriesConfig);
+          selectedDataConfig: selectedDataConfig!,
+          selectedSeriesConfig: selectedSeriesConfig!);
 
   @override
   void updateCommonBehavior(common.InitialSelection commonBehavior) {}

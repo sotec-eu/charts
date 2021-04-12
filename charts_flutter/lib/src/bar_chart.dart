@@ -38,28 +38,28 @@ import 'user_managed_state.dart' show UserManagedState;
 @immutable
 class BarChart extends CartesianChart<String> {
   final bool vertical;
-  final common.BarRendererDecorator barRendererDecorator;
+  final common.BarRendererDecorator? barRendererDecorator;
 
   BarChart(
     List<common.Series<dynamic, String>> seriesList, {
-    bool animate,
-    Duration animationDuration,
-    common.AxisSpec domainAxis,
-    common.AxisSpec primaryMeasureAxis,
-    common.AxisSpec secondaryMeasureAxis,
-    LinkedHashMap<String, common.NumericAxisSpec> disjointMeasureAxes,
-    common.BarGroupingType barGroupingType,
-    common.BarRendererConfig<String> defaultRenderer,
-    List<common.SeriesRendererConfig<String>> customSeriesRenderers,
-    List<ChartBehavior> behaviors,
-    List<SelectionModelConfig<String>> selectionModels,
-    common.RTLSpec rtlSpec,
+    bool? animate,
+    Duration? animationDuration,
+    common.AxisSpec? domainAxis,
+    common.AxisSpec? primaryMeasureAxis,
+    common.AxisSpec? secondaryMeasureAxis,
+    LinkedHashMap<String, common.NumericAxisSpec>? disjointMeasureAxes,
+    common.BarGroupingType? barGroupingType,
+    common.BarRendererConfig<String>? defaultRenderer,
+    List<common.SeriesRendererConfig<String>>? customSeriesRenderers,
+    List<ChartBehavior>? behaviors,
+    List<SelectionModelConfig<String>>? selectionModels,
+    common.RTLSpec? rtlSpec,
     this.vertical = true,
     bool defaultInteractions = true,
-    LayoutConfig layoutConfig,
-    UserManagedState<String> userManagedState,
+    LayoutConfig? layoutConfig,
+    UserManagedState<String>? userManagedState,
     this.barRendererDecorator,
-    bool flipVerticalAxis,
+    bool? flipVerticalAxis,
   }) : super(
           seriesList,
           animate: animate,
@@ -70,8 +70,8 @@ class BarChart extends CartesianChart<String> {
           disjointMeasureAxes: disjointMeasureAxes,
           defaultRenderer: defaultRenderer ??
               new common.BarRendererConfig<String>(
-                  groupingType: barGroupingType,
-                  barRendererDecorator: barRendererDecorator),
+                  groupingType: barGroupingType!,
+                  barRendererDecorator: barRendererDecorator!),
           customSeriesRenderers: customSeriesRenderers,
           behaviors: behaviors,
           selectionModels: selectionModels,
@@ -83,16 +83,16 @@ class BarChart extends CartesianChart<String> {
         );
 
   @override
-  common.BarChart createCommonChart(BaseChartState chartState) {
+  common.BarChart createCommonChart(BaseChartState? chartState) {
     // Optionally create primary and secondary measure axes if the chart was
     // configured with them. If no axes were configured, then the chart will
     // use its default types (usually a numeric axis).
     return new common.BarChart(
         vertical: vertical,
-        layoutConfig: layoutConfig?.commonLayoutConfig,
-        primaryMeasureAxis: primaryMeasureAxis?.createAxis(),
-        secondaryMeasureAxis: secondaryMeasureAxis?.createAxis(),
-        disjointMeasureAxes: createDisjointMeasureAxes());
+        (layoutConfig: layoutConfig?.commonLayoutConfig)!,
+        (primaryMeasureAxis: primaryMeasureAxis?.createAxis() as NumericAxis)!,
+        (secondaryMeasureAxis: secondaryMeasureAxis?.createAxis() as NumericAxis)!,
+        disjointMeasureAxes: createDisjointMeasureAxes()!);
   }
 
   @override

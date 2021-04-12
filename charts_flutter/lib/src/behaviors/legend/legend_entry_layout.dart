@@ -26,7 +26,7 @@ import 'legend.dart' show TappableLegend;
 abstract class LegendEntryLayout {
   Widget build(BuildContext context, common.LegendEntry legendEntry,
       TappableLegend legend, bool isHidden,
-      {bool showMeasures});
+      {bool? showMeasures});
 }
 
 /// Builds one legend entry as a row with symbol and label from the series.
@@ -48,7 +48,7 @@ class SimpleLegendEntryLayout implements LegendEntryLayout {
     // Get the SymbolRendererBuilder wrapping a common.SymbolRenderer if needed.
     final SymbolRendererBuilder symbolRendererBuilder =
         legendEntry.symbolRenderer is SymbolRendererBuilder
-            ? legendEntry.symbolRenderer
+            ? legendEntry.symbolRenderer as SymbolRendererBuilder
             : new SymbolRendererCanvas(
                 legendEntry.symbolRenderer, legendEntry.dashPattern);
 
@@ -82,7 +82,7 @@ class SimpleLegendEntryLayout implements LegendEntryLayout {
   @override
   Widget build(BuildContext context, common.LegendEntry legendEntry,
       TappableLegend legend, bool isHidden,
-      {bool showMeasures}) {
+      {bool? showMeasures}) {
     final rowChildren = <Widget>[];
 
     // TODO: Allow setting to configure the padding.
@@ -90,7 +90,7 @@ class SimpleLegendEntryLayout implements LegendEntryLayout {
     final symbol = createSymbol(context, legendEntry, legend, isHidden);
     final label = createLabel(context, legendEntry, legend, isHidden);
 
-    final measure = showMeasures
+    final measure = showMeasures!
         ? createMeasureValue(context, legendEntry, legend, isHidden)
         : null;
 
@@ -131,7 +131,7 @@ class SimpleLegendEntryLayout implements LegendEntryLayout {
         : null;
     if (isHidden) {
       // Use a default color for hidden legend entries if none is provided.
-      color ??= Theme.of(context).textTheme.body1.color;
+      color ??= Theme.of(context).textTheme.body1!.color!;
       color = color.withOpacity(0.26);
     }
 

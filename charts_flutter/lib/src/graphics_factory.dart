@@ -33,7 +33,7 @@ class GraphicsFactory implements common.GraphicsFactory {
   /// Returns a [TextStyle] object.
   @override
   common.TextStyle createTextPaint() =>
-      TextStyle()..fontFamily = defaultTextStyle.style.fontFamily;
+      TextStyle()..fontFamily = defaultTextStyle.style.fontFamily!;
 
   /// Returns a text element from [text] and [style].
   @override

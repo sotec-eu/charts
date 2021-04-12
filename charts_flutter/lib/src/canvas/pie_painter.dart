@@ -20,7 +20,7 @@ import 'circle_sector_painter.dart' show CircleSectorPainter;
 
 /// Draws a pie chart, with an optional hole in the center.
 class PiePainter {
-  CircleSectorPainter _circleSectorPainter;
+  CircleSectorPainter? _circleSectorPainter;
 
   /// Draws a pie chart, with an optional hole in the center.
   void draw(Canvas canvas, Paint paint, common.CanvasPie canvasPie) {
@@ -31,7 +31,7 @@ class PiePainter {
     final innerRadius = canvasPie.innerRadius;
 
     for (var slice in canvasPie.slices) {
-      _circleSectorPainter.draw(
+      _circleSectorPainter!.draw(
           canvas: canvas,
           paint: paint,
           center: center,

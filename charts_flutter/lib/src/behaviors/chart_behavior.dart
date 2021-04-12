@@ -28,7 +28,7 @@ import '../base_chart_state.dart' show BaseChartState;
 /// Flutter wrapper for chart behaviors.
 @immutable
 abstract class ChartBehavior<B extends common.ChartBehavior> {
-  Set<GestureType> get desiredGestures;
+  Set<GestureType>? get desiredGestures;
 
   B createCommonBehavior<D>();
 
@@ -51,7 +51,7 @@ abstract class BuildableBehavior<B extends common.ChartBehavior> {
   Widget build(BuildContext context);
 
   /// The position on the widget.
-  common.BehaviorPosition get position;
+  common.BehaviorPosition? get position;
 
   /// Justification of the widget, if [position] is top, bottom, start, or end.
   common.OutsideJustification get outsideJustification;

@@ -43,20 +43,20 @@ class ChartCanvas implements common.ChartCanvas {
   final common.GraphicsFactory graphicsFactory;
   final _paint = new Paint();
 
-  CircleSectorPainter _circleSectorPainter;
-  LinePainter _linePainter;
-  PiePainter _piePainter;
-  PointPainter _pointPainter;
-  PolygonPainter _polygonPainter;
+  CircleSectorPainter? _circleSectorPainter;
+  LinePainter? _linePainter;
+  PiePainter? _piePainter;
+  PointPainter? _pointPainter;
+  PolygonPainter? _polygonPainter;
 
   ChartCanvas(this.canvas, this.graphicsFactory);
 
   @override
   void drawCircleSector(Point center, double radius, double innerRadius,
       double startAngle, double endAngle,
-      {common.Color fill, common.Color stroke, double strokeWidthPx}) {
+      {required common.Color fill, common.Color? stroke, double? strokeWidthPx}) {
     _circleSectorPainter ??= new CircleSectorPainter();
-    _circleSectorPainter.draw(
+    _circleSectorPainter!.draw(
         canvas: canvas,
         paint: _paint,
         center: center,
@@ -71,15 +71,15 @@ class ChartCanvas implements common.ChartCanvas {
 
   @override
   void drawLine(
-      {List<Point> points,
-      Rectangle<num> clipBounds,
-      common.Color fill,
-      common.Color stroke,
-      bool roundEndCaps,
-      double strokeWidthPx,
-      List<int> dashPattern}) {
+      {required List<Point> points,
+      Rectangle<num>? clipBounds,
+      common.Color? fill,
+      common.Color? stroke,
+      bool? roundEndCaps,
+      double? strokeWidthPx,
+      List<int>? dashPattern}) {
     _linePainter ??= new LinePainter();
-    _linePainter.draw(
+    _linePainter!.draw(
         canvas: canvas,
         paint: _paint,
         points: points,
@@ -94,19 +94,19 @@ class ChartCanvas implements common.ChartCanvas {
   @override
   void drawPie(common.CanvasPie canvasPie) {
     _piePainter ??= new PiePainter();
-    _piePainter.draw(canvas, _paint, canvasPie);
+    _piePainter!.draw(canvas, _paint, canvasPie);
   }
 
   @override
   void drawPoint(
-      {Point point,
-      double radius,
-      common.Color fill,
-      common.Color stroke,
-      double strokeWidthPx,
-      common.BlendMode blendMode}) {
+      {Point? point,
+      double? radius,
+      common.Color? fill,
+      common.Color? stroke,
+      double? strokeWidthPx,
+      common.BlendMode? blendMode}) {
     _pointPainter ??= new PointPainter();
-    _pointPainter.draw(
+    _pointPainter!.draw(
         canvas: canvas,
         paint: _paint,
         point: point,
@@ -118,13 +118,13 @@ class ChartCanvas implements common.ChartCanvas {
 
   @override
   void drawPolygon(
-      {List<Point> points,
-      Rectangle<num> clipBounds,
-      common.Color fill,
-      common.Color stroke,
-      double strokeWidthPx}) {
+      {required List<Point> points,
+      Rectangle<num>? clipBounds,
+      common.Color? fill,
+      common.Color? stroke,
+      double? strokeWidthPx}) {
     _polygonPainter ??= new PolygonPainter();
-    _polygonPainter.draw(
+    _polygonPainter!.draw(
         canvas: canvas,
         paint: _paint,
         points: points,
@@ -148,15 +148,15 @@ class ChartCanvas implements common.ChartCanvas {
 
   @override
   void drawRect(Rectangle<num> bounds,
-      {common.Color fill,
-      common.FillPatternType pattern,
-      common.Color stroke,
-      double strokeWidthPx,
-      Rectangle<num> drawAreaBounds}) {
+      {common.Color? fill,
+      common.FillPatternType? pattern,
+      common.Color? stroke,
+      double? strokeWidthPx,
+      Rectangle<num>? drawAreaBounds}) {
     final drawStroke =
         (strokeWidthPx != null && strokeWidthPx > 0.0 && stroke != null);
 
-    final strokeWidthOffset = (drawStroke ? strokeWidthPx : 0);
+    final strokeWidthOffset = (drawStroke ? strokeWidthPx! : 0);
 
     // Factor out stroke width, if a stroke is enabled.
     final fillRectBounds = new Rectangle<num>(
@@ -174,7 +174,7 @@ class ChartCanvas implements common.ChartCanvas {
       case common.FillPatternType.solid:
       default:
         // Use separate rect for drawing stroke
-        _paint.color = new Color.fromARGB(fill.a, fill.r, fill.g, fill.b);
+        _paint.color = new Color.fromARGB(fill!.a, fill.r, fill.g, fill.b);
         _paint.style = PaintingStyle.fill;
 
         // Apply a gradient to the top [rect_top_gradient_pixels] to transparent
@@ -191,7 +191,7 @@ class ChartCanvas implements common.ChartCanvas {
     // [Canvas.drawRect] does not support drawing a rectangle with both a fill
     // and a stroke at this time. Use a separate rect for the stroke.
     if (drawStroke) {
-      _paint.color = new Color.fromARGB(stroke.a, stroke.r, stroke.g, stroke.b);
+      _paint.color = new Color.fromARGB(stroke!.a, stroke.r, stroke.g, stroke.b);
       // Set shader to null if no draw area bounds so it can use the color
       // instead.
       _paint.shader = drawAreaBounds != null
@@ -199,7 +199,7 @@ class ChartCanvas implements common.ChartCanvas {
               drawAreaBounds.top.toDouble(), stroke)
           : null;
       _paint.strokeJoin = StrokeJoin.round;
-      _paint.strokeWidth = strokeWidthPx;
+      _paint.strokeWidth = strokeWidthPx!;
       _paint.style = PaintingStyle.stroke;
 
       canvas.drawRect(_getRect(bounds), _paint);
@@ -211,24 +211,24 @@ class ChartCanvas implements common.ChartCanvas {
 
   @override
   void drawRRect(Rectangle<num> bounds,
-      {common.Color fill,
-      common.Color stroke,
-      common.Color patternColor,
-      common.FillPatternType fillPattern,
-      double patternStrokeWidthPx,
-      double strokeWidthPx,
-      num radius,
-      bool roundTopLeft,
-      bool roundTopRight,
-      bool roundBottomLeft,
-      bool roundBottomRight}) {
+      {required common.Color fill,
+      common.Color? stroke,
+      common.Color? patternColor,
+      common.FillPatternType? fillPattern,
+      double? patternStrokeWidthPx,
+      double? strokeWidthPx,
+      num? radius,
+      required bool roundTopLeft,
+      required bool roundTopRight,
+      required bool roundBottomLeft,
+      required bool roundBottomRight}) {
     // Use separate rect for drawing stroke
     _paint.color = new Color.fromARGB(fill.a, fill.r, fill.g, fill.b);
     _paint.style = PaintingStyle.fill;
 
     canvas.drawRRect(
         _getRRect(bounds,
-            radius: radius,
+            radius: radius as double?,
             roundTopLeft: roundTopLeft,
             roundTopRight: roundTopRight,
             roundBottomLeft: roundBottomLeft,
@@ -238,7 +238,7 @@ class ChartCanvas implements common.ChartCanvas {
 
   @override
   void drawBarStack(common.CanvasBarStack barStack,
-      {Rectangle<num> drawAreaBounds}) {
+      {Rectangle<num>? drawAreaBounds}) {
     // only clip if rounded rect.
 
     // Clip a rounded rect for the whole region if rounded bars.
@@ -297,8 +297,8 @@ class ChartCanvas implements common.ChartCanvas {
       canvas.translate(offsetX.toDouble(), offsetY.toDouble());
       canvas.rotate(rotation);
 
-      (textElement as TextElement)
-          .textPainter
+      textElement
+          .textPainter!
           .paint(canvas, new Offset(0.0, 0.0));
 
       canvas.restore();
@@ -315,8 +315,8 @@ class ChartCanvas implements common.ChartCanvas {
 
       offsetY -= flutterTextElement.verticalFontShift;
 
-      (textElement as TextElement)
-          .textPainter
+      textElement
+          .textPainter!
           .paint(canvas, new Offset(offsetX.toDouble(), offsetY.toDouble()));
     }
   }
@@ -345,14 +345,14 @@ class ChartCanvas implements common.ChartCanvas {
   /// Convert dart:math [Rectangle] and to Flutter [RRect].
   RRect _getRRect(
     Rectangle<num> rectangle, {
-    double radius,
+    double? radius,
     bool roundTopLeft = false,
     bool roundTopRight = false,
     bool roundBottomLeft = false,
     bool roundBottomRight = false,
   }) {
     final cornerRadius =
-        radius == 0 ? Radius.zero : new Radius.circular(radius);
+        radius == 0 ? Radius.zero : new Radius.circular(radius!);
 
     return new RRect.fromLTRBAndCorners(
         rectangle.left.toDouble(),
@@ -369,10 +369,10 @@ class ChartCanvas implements common.ChartCanvas {
   _drawForwardHatchPattern(
     Rectangle<num> bounds,
     Canvas canvas, {
-    common.Color background,
-    common.Color fill,
+    common.Color? background,
+    common.Color? fill,
     double fillWidthPx = 4.0,
-    Rectangle<num> drawAreaBounds,
+    Rectangle<num>? drawAreaBounds,
   }) {
     background ??= common.StyleFactory.style.white;
     fill ??= common.StyleFactory.style.black;
@@ -395,10 +395,10 @@ class ChartCanvas implements common.ChartCanvas {
     // Get the longer side of the bounds here for the size of this square.
     final size = max(bounds.width, bounds.height);
 
-    final x0 = bounds.left + size + fillWidthPx;
-    final x1 = bounds.left - fillWidthPx;
-    final y0 = bounds.bottom - size - fillWidthPx;
-    final y1 = bounds.bottom + fillWidthPx;
+    final num x0 = bounds.left + size + fillWidthPx;
+    final num x1 = bounds.left - fillWidthPx;
+    final num y0 = bounds.bottom - size - fillWidthPx;
+    final num y1 = bounds.bottom + fillWidthPx;
     final offset = 8;
 
     final isVertical = bounds.height >= bounds.width;
@@ -418,7 +418,7 @@ class ChartCanvas implements common.ChartCanvas {
     final end = size + offset;
 
     // Create gradient for line painter if top bounds exceeded.
-    ui.Shader lineShader;
+    ui.Shader? lineShader;
     if (drawAreaBounds != null && bounds.top < drawAreaBounds.top) {
       lineShader = _createHintGradient(
           drawAreaBounds.left.toDouble(), drawAreaBounds.top.toDouble(), fill);
@@ -430,7 +430,7 @@ class ChartCanvas implements common.ChartCanvas {
       final modifier = isVertical ? -1 * i : i;
 
       // Draw a line segment in the bottom right corner of the pattern.
-      _linePainter.draw(
+      _linePainter!.draw(
           canvas: canvas,
           paint: _paint,
           points: [

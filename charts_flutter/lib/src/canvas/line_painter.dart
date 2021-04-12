@@ -32,16 +32,16 @@ class LinePainter {
   /// pattern will be repeated to derive an even number of values. "1,2,3" is
   /// equivalent to "1,2,3,1,2,3."
   void draw(
-      {Canvas canvas,
-      Paint paint,
-      List<Point> points,
-      Rectangle<num> clipBounds,
-      common.Color fill,
-      common.Color stroke,
-      bool roundEndCaps,
-      double strokeWidthPx,
-      List<int> dashPattern,
-      ui.Shader shader}) {
+      {Canvas? canvas,
+      Paint? paint,
+      required List<Point> points,
+      Rectangle<num>? clipBounds,
+      common.Color? fill,
+      common.Color? stroke,
+      bool? roundEndCaps,
+      double? strokeWidthPx,
+      List<int>? dashPattern,
+      ui.Shader? shader}) {
     if (points.isEmpty) {
       return;
     }
@@ -57,7 +57,7 @@ class LinePainter {
             clipBounds.height.toDouble()));
     }
 
-    paint.color = new Color.fromARGB(stroke.a, stroke.r, stroke.g, stroke.b);
+    paint!.color = new Color.fromARGB(stroke!.a, stroke.r, stroke.g, stroke.b);
     if (shader != null) {
       paint.shader = shader;
     }
@@ -66,7 +66,7 @@ class LinePainter {
     if (points.length == 1) {
       final point = points.first;
       paint.style = PaintingStyle.fill;
-      canvas.drawCircle(new Offset(point.x, point.y), strokeWidthPx, paint);
+      canvas!.drawCircle(new Offset(point.x as double, point.y as double), strokeWidthPx!, paint);
     } else {
       if (strokeWidthPx != null) {
         paint.strokeWidth = strokeWidthPx;
@@ -79,14 +79,14 @@ class LinePainter {
           paint.strokeCap = StrokeCap.round;
         }
 
-        _drawSolidLine(canvas, paint, points);
+        _drawSolidLine(canvas!, paint, points);
       } else {
         _drawDashedLine(canvas, paint, points, dashPattern);
       }
     }
 
     if (clipBounds != null) {
-      canvas.restore();
+      canvas!.restore();
     }
   }
 
@@ -106,7 +106,7 @@ class LinePainter {
 
   /// Draws dashed lines lines between each point.
   void _drawDashedLine(
-      Canvas canvas, Paint paint, List<Point> points, List<int> dashPattern) {
+      Canvas? canvas, Paint? paint, List<Point> points, List<int> dashPattern) {
     final localDashPattern = new List.from(dashPattern);
 
     // If an odd number of parts are defined, repeat the pattern to get an even
@@ -183,7 +183,7 @@ class LinePainter {
                 path.lineTo(p.dx, p.dy);
               }
 
-              canvas.drawPath(path, paint);
+              canvas!.drawPath(path, paint!);
 
               remainderPoints = null;
             } else {
@@ -203,7 +203,7 @@ class LinePainter {
                 ];
               } else {
                 // Otherwise, draw a simple line segment for this dash.
-                canvas.drawLine(previousPoint, nextPoint, paint);
+                canvas!.drawLine(previousPoint, nextPoint, paint!);
               }
             }
           }
